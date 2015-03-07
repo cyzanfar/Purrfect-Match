@@ -1,0 +1,26 @@
+<!-- <h1>SEARCH FOR PETS!!!</h1>
+
+# <%#= form_for(@pet) do |f| %>
+# 	<%#= f.label :zip %>
+# 	<%#= f.text_field :zip %>
+# 	<%#= f.options_for_select([["Dog","dog"],["Cat","cat"]],[["Rabbit", "rabbit"]], [["Small & Furry", "smallfurry"]],[["Horse", "horse"]],[["Pig", "pig"]],[["Reptile", "reptile"]],[["Bird", "bird"]],[["Barnyard", "barnyard"]]) %>
+# 	<#%= f.submit %>
+# <#%end%>
+ -->
+
+ <%= form_tag("/pets") do %>
+ <%= label_tag('pets[zip]', "Zipcode") %>
+ <%= text_field_tag('pets[zip]') %>
+ <%= label_tag('pets[type]', "Type") %>
+ <%= select_tag(:type, options_for_select([["Dog","dog"],["Cat","cat"],["Rabbit", "rabbit"], ["Small & Furry","smallfurry"],["Horse", "horse"],["Pig", "pig"],["Reptile", "reptile"],["Bird", "bird"],["Barnyard", "barnyard"]])) %>
+  <%= label_tag('pets[breed]', "Breed") %>
+  <%= text_field_tag('pets[breed]') %>
+  <%= label_tag('pets[age]', "Age") %>
+  <%= select_tag(:age, options_for_select([["Baby","baby"],["Young","young"],["Adult", "adult"], ["Senior","senior"]])) %>
+  <%= label_tag('pets[gender]', "Gender") %>
+  <%= select_tag(:sex, options_for_select([["Male","M"],["Female","F"]])) %>
+
+ <%= submit_tag "Search" %>
+ <%end%>
+
+
