@@ -11,19 +11,24 @@ class PetsController < ApplicationController
   end
 
   def create
+    Pet.destroy_all
      @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 500)
       @selected_animals = @pets.select do |pet|
-        pet.age == params['pets']['age']
+        pet.age == params['pets']['age'] # &&
+        pet.size == params['pets']['size']
+        pet.sex == params['pets']['sex']
+        pet.breeds == params['pets']['breed']
       end
 
       @selected_animals.each do |selected_animal|
-        hello = Pet.create(name: selected_animal.name, age: selected_animal.age, size: selected_animal.size, sex: selected_animal.sex, breed: selected_animal.breeds)
-         binding.pry
+        @hello = Pet.create(name: selected_animal.name)
+        @hello.age = selected_animal.age
+        @hello.size = selected_animal.size
+        @hello.sex = selected_animal.sex
+        @hello.breed = selected_animal.breeds
+        @hello.save
       end
-
-      # binding.pry
-
-
+    binding.pry
   end
 
 
