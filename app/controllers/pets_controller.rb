@@ -10,9 +10,14 @@ class PetsController < ApplicationController
     @pet = Pet.new
   end
 
+  def results
+    @animals = Pet.all
+    binding.pry
+  end
+
   def create
     Pet.destroy_all
-     @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 500)
+     @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 100)
      if params['pets']['breed'].empty?
       @selected_animals = @pets.select do |pet|
         pet.age == params['pets']['age']  &&
@@ -36,13 +41,13 @@ class PetsController < ApplicationController
         @desired_pet.size = selected_animal.size
         @desired_pet.sex = selected_animal.sex
         @desired_pet.breed = selected_animal.breeds
-        @desired_pet.picture = selected_animal.photos.first.medium 
+        @desired_pet.picture = selected_animal.photos.first.medium
         @desired_pet.description = selected_animal.description
         @desired_pet.shelter_id = selected_animal.shelter_id
         @desired_pet.last_update = selected_animal.last_update
         @desired_pet.save
       end
-    binding.pry
+      redirect_to :controller=>'pets', :action => 'results'
   end
 
 
