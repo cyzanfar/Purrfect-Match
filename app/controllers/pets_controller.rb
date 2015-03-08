@@ -13,20 +13,34 @@ class PetsController < ApplicationController
   def create
     Pet.destroy_all
      @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 500)
+     if params['pets']['breed'].empty?
       @selected_animals = @pets.select do |pet|
-        pet.age == params['pets']['age'] # &&
-        pet.size == params['pets']['size']
+        pet.age == params['pets']['age']  &&
+        pet.size == params['pets']['size'] &&
         pet.sex == params['pets']['sex']
-        pet.breeds == params['pets']['breed']
       end
+    else
+      @selected_animals = @pets.select do |pet|
+        pet.age == params['pets']['age']  &&
+        pet.size == params['pets']['size'] &&
+        pet.sex == params['pets']['sex'] &&
+        pet.breeds.include?(params['pets']['breeds'])
+      end
+    end
+
+
 
       @selected_animals.each do |selected_animal|
-        @hello = Pet.create(name: selected_animal.name)
-        @hello.age = selected_animal.age
-        @hello.size = selected_animal.size
-        @hello.sex = selected_animal.sex
-        @hello.breed = selected_animal.breeds
-        @hello.save
+        @desired_pet = Pet.create(name: selected_animal.name)
+        @desired_pet.age = selected_animal.age
+        @desired_pet.size = selected_animal.size
+        @desired_pet.sex = selected_animal.sex
+        @desired_pet.breed = selected_animal.breeds
+        @desired_pet.picture = selected_animal.photos.first.medium 
+        @desired_pet.description = selected_animal.description
+        @desired_pet.shelter_id = selected_animal.shelter_id
+        @desired_pet.last_update = selected_animal.last_update
+        @desired_pet.save
       end
     binding.pry
   end
