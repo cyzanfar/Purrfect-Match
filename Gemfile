@@ -15,9 +15,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 # ruby wrapper for petfinder api
 gem 'petfinder'
-
+# bootstrap sass
+gem 'bootstrap-sass', '~> 3.3.3'
 #pry debugging
-
 gem 'pry'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
