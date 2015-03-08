@@ -12,7 +12,7 @@ class PetsController < ApplicationController
 
   def results
     @animals = Pet.all
-    binding.pry
+    # binding.pry
   end
 
   def create
@@ -40,7 +40,7 @@ class PetsController < ApplicationController
         @desired_pet.age = selected_animal.age
         @desired_pet.size = selected_animal.size
         @desired_pet.sex = selected_animal.sex
-        @desired_pet.breed = selected_animal.breeds
+        @desired_pet.breed = selected_animal.breeds.join
         @desired_pet.picture = selected_animal.photos.first.medium
         @desired_pet.description = selected_animal.description
         @desired_pet.shelter_id = selected_animal.shelter_id

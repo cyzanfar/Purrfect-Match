@@ -1,6 +1,33 @@
 <% @animals.each do |pet| %>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+          <!--   <th>Type</th> -->
+            <th>Sex</th>
+            <th>Age</th>
+            <th>breed</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Description</th>
+            <th>Shelter_id</th>
+            <th>Last Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= pet.name %></td>
+<!--             <td><%#= pet.type %></td>
+ -->        <td><%= pet.sex %></td>
+            <td><%= pet.age %></td>
+            <td><%= pet.breed%></td>
+            <td><%= pet.size %></td>
+            <td><%= pet.picture %></td>
+            <td><%= pet.description %></td>
+            <td><%= pet.shelter_id %></td>
+            <td><%= pet.last_update %></td>
+        </tr>
 
-<ul>
-	<li><%= pet.age %></li>
-</ul>
+    </tbody>
+</table>
 <%end%>
