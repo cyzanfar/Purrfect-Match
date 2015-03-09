@@ -44,6 +44,7 @@ class PetsController < ApplicationController
         @desired_pet.size = selected_animal.size
         @desired_pet.sex = selected_animal.sex
         @desired_pet.breed = selected_animal.breeds.join
+        @desired_pet.type_name = pet_finder_type
         @desired_pet.picture = selected_animal.photos.first.medium
         @desired_pet.description = selected_animal.description
         @desired_pet.shelter_id = selected_animal.shelter_id
