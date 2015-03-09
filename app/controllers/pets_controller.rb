@@ -10,8 +10,12 @@ class PetsController < ApplicationController
     @pet = Pet.new
   end
 
-  def results
+  def destroy_shelters
     Shelter.destroy_all
+  end
+
+  def results
+    destroy_shelters
     @animals = Pet.all
     @animals.collect do |animal|
       animal.shelter_name = Shelter.find_or_create_by(name: PETFINDER.shelter(animal.shelter_id).name, email: PETFINDER.shelter(animal.shelter_id).email, phone: PETFINDER.shelter(animal.shelter_id).phone, city: PETFINDER.shelter(animal.shelter_id).city, zip: PETFINDER.shelter(animal.shelter_id).zip).name
@@ -21,8 +25,12 @@ class PetsController < ApplicationController
      # binding.pry
   end
 
-  def create
+  def destroy_pets
     Pet.destroy_all
+  end
+
+  def create
+    destroy_pets
      @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 500)
      if params['pets']['breed'].empty?
       @selected_animals = @pets.select do |pet|
@@ -45,7 +53,7 @@ class PetsController < ApplicationController
         @desired_pet.sex = selected_animal.sex
         @desired_pet.breed = selected_animal.breeds.join
         @desired_pet.type_name = pet_finder_type
-        @desired_pet.picture = selected_animal.photos.first.medium
+        @desired_pet.picture = selected_animal.photos.first.medium # THIS line breaks if there are no medium picture for the animals queried
         @desired_pet.description = selected_animal.description
         @desired_pet.shelter_id = selected_animal.shelter_id
         @desired_pet.last_update = selected_animal.last_update
