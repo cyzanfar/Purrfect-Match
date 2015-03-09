@@ -30,6 +30,7 @@
             <td><%= pet.picture %></td>
             <td><%= pet.description %></td>
             <td><%= pet.shelter_id %></td>
+            <td><%= pet.last_update %></td>
             <% shelter = Shelter.find_by(name: pet.shelter_name)%>
             <td><%= shelter.name %></td>
             <td><%= shelter.phone %></td>
