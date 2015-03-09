@@ -4,7 +4,7 @@ TODO:
 
 -Make sure program doesn't break if certain values are nil (e.g `photos.medium`)
 
--Implement autocomplete feature for Breeds field (<a href='https://github.com/twitter/typeahead.js'>Typeahead</a>)
+-Implement autocomplete feature for Breeds field (https://github.com/twitter/typeahead.js)
 
 -Set callback methods for user authentification (e.g before adding pet to FavoritePet)
 
