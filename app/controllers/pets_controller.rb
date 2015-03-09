@@ -11,13 +11,19 @@ class PetsController < ApplicationController
   end
 
   def results
+    Shelter.destroy_all
     @animals = Pet.all
-    # binding.pry
+    @animals.collect do |animal|
+      animal.shelter_name = Shelter.find_or_create_by(name: PETFINDER.shelter(animal.shelter_id).name, email: PETFINDER.shelter(animal.shelter_id).email, phone: PETFINDER.shelter(animal.shelter_id).phone, city: PETFINDER.shelter(animal.shelter_id).city, zip: PETFINDER.shelter(animal.shelter_id).zip).name
+
+      animal.save
+    end
+     # binding.pry
   end
 
   def create
     Pet.destroy_all
-     @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 100)
+     @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 500)
      if params['pets']['breed'].empty?
       @selected_animals = @pets.select do |pet|
         pet.age == params['pets']['age']  &&
@@ -32,9 +38,6 @@ class PetsController < ApplicationController
         pet.breeds.include?(params['pets']['breeds'])
       end
     end
-
-
-
       @selected_animals.each do |selected_animal|
         @desired_pet = Pet.create(name: selected_animal.name)
         @desired_pet.age = selected_animal.age
@@ -47,6 +50,7 @@ class PetsController < ApplicationController
         @desired_pet.last_update = selected_animal.last_update
         @desired_pet.save
       end
+      # binding.pry
       redirect_to :controller=>'pets', :action => 'results'
   end
 

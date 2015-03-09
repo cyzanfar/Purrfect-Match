@@ -12,6 +12,11 @@
             <th>Description</th>
             <th>Shelter_id</th>
             <th>Last Update</th>
+            <th>Shelter</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Zip</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +30,12 @@
             <td><%= pet.picture %></td>
             <td><%= pet.description %></td>
             <td><%= pet.shelter_id %></td>
-            <td><%= pet.last_update %></td>
+            <% shelter = Shelter.find_by(name: pet.shelter_name)%>
+            <td><%= shelter.name %></td>
+            <td><%= shelter.phone %></td>
+            <td><%= shelter.email %></td>
+            <td><%= shelter.city %></td>
+            <td><%= shelter.zip %></td>
         </tr>
 
     </tbody>
