@@ -4,7 +4,12 @@ class PetsController < ApplicationController
 
   def search #lets set this up in route so it appears :as => "search"
     @pet = Pet.new
+    #send form data in params to create
   end
+
+  def results
+  end
+
 
   def destroy_shelters
     Shelter.destroy_all
@@ -20,6 +25,11 @@ class PetsController < ApplicationController
   end
 
   # def create
+
+  def create
+    binding.pry
+    #redirect to results
+  end
   #   Pet.destroy_all
   #    @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 500)
   #    if params['pets']['breed'].empty?
