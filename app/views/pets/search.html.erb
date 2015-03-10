@@ -9,18 +9,18 @@
  -->
 
  <%= form_tag("/pets") do %>
- <%= label_tag('pets[zip]', "Zipcode") %>
- <%= text_field_tag('pets[zip]') %>
- <%= label_tag('pets[type]', "Type") %>
- <%= select_tag('pets[type]', options_for_select([["Dog","dog"],["Cat","cat"],["Rabbit", "rabbit"], ["Small & Furry","smallfurry"],["Horse", "horse"],["Pig", "pig"],["Reptile", "reptile"],["Bird", "bird"],["Barnyard", "barnyard"]])) %>
+ <%= label_tag('pets_search[zip]', "Zipcode") %>
+ <%= text_field_tag('pets_search[zip]') %>
+ <%= label_tag('pets_search[type]', "Type") %>
+ <%= select_tag('pets_search[type]', options_for_select([["Dog","dog"],["Cat","cat"],["Rabbit", "rabbit"], ["Small & Furry","smallfurry"],["Horse", "horse"],["Pig", "pig"],["Reptile", "reptile"],["Bird", "bird"],["Barnyard", "barnyard"]])) %>
   <%= label_tag('pets[breed]', "Breed") %>
   <%= text_field_tag('pets[breed]') %>
   <%= label_tag('pets[age]', "Age") %>
-  <%= select_tag('pets[age]', options_for_select([["Baby","Baby"],["Young","Young"],["Adult", "Adult"], ["Senior","Senior"]])) %>
+  <%= select_tag('pets[age]', options_for_select([["None",""],["Baby","Baby"],["Young","Young"],["Adult", "Adult"], ["Senior","Senior"]])) %>
   <%= label_tag('pets[gender]', "Gender") %>
-  <%= select_tag('pets[sex]', options_for_select([["Male","M"],["Female","F"]])) %>
+  <%= select_tag('pets[sex]', options_for_select([["None",""],["Male","M"],["Female","F"]])) %>
     <%= label_tag('pets[size]', "Size") %>
-  <%= select_tag('pets[size]', options_for_select([["Small","S"],["Medium","M"], ["Large", "L"], ["Xtra Large", "XL"]])) %>
+  <%= select_tag('pets[size]', options_for_select([["None",""],["Small","S"],["Medium","M"], ["Large", "L"], ["Xtra Large", "XL"]])) %>
 
  <%= submit_tag "Search" %>
  <%end%>
