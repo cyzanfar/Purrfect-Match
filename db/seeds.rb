@@ -15,17 +15,26 @@ ZIPCODES = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10009, 10010, 10011
 
 PETFINDER = Petfinder::Client.new('bf43919be64d0ffed94aa9fa2acfd9d0', '11f2621e8fac20123e25a1807f0e61fe')
 
-PETFINDER.find_pets(SPECIES.sample, ZIPCODES.sample, count: 100).each do |pf|
+PETFINDER.find_pets(SPECIES.sample, ZIPCODES.sample, count: 900).each do |pf|
+  # binding.pry
   pet = Pet.find_or_create_by(species: pf.animal, name: pf.name, size: pf.size, sex: pf.sex, age: pf.age, description: pf.description)
   pf.breeds.each do |breed|
     pet.breeds << Breed.find_or_create_by(name: breed)
   end
+  pf.photos.each do |photo|
+    if !photo.medium.empty?
+      pet.picture = photo.medium 
+    else
+      pet.picture = '../app/assets/images/default_pet.jpg'
+    end
+  end
   pf_shelter = PETFINDER.shelter(pf.shelter_id)
-  shelter = Shelter.find_or_create_by(name:pf_shelter.name, email: pf_shelter.email, phone: pf_shelter.phone)
+  shelter = Shelter.find_or_create_by(name:pf_shelter.name, email: pf_shelter.email, phone: pf_shelter.phone, state: pf_shelter.state, city: pf_shelter.city, zip: pf_shelter.zip)
   
   shelter.save
   pet.shelter_id = shelter.id
   pet.save
+  # binding.pry
 end
  
 # PETFINDER.find_pets('cat', 10013)
