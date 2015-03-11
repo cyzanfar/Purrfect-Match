@@ -18,6 +18,8 @@ gem 'devise', '~> 3.4.0'
 # ruby wrapper for petfinder api
 gem 'petfinder'
 # bootstrap sass
+# autocomplete for breed search
+gem 'twitter-typeahead-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 #pry debugging
 gem 'pry'
@@ -42,7 +44,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
+  # Table visualization
+	gem "rails-erd"
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
