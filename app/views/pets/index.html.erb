@@ -1,44 +1,18 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Pets</h1>
+<%= form_tag :controller => 'pets', :action => 'search', :method => 'get' do %>
+ <%= label_tag('pets[zip_code]', "Zipcode") %>
+ <%= text_field_tag('pets[zip_code]') %>
+ <%= label_tag('pets[species]', "Type") %>
+ <%= select_tag('pets[species]', options_for_select([["Dog","Dog"],["Cat","Cat"],["Rabbit", "Rabbit"], ["Small & Furry","Smallfurry"],["Horse", "Horse"],["Pig", "Pig"],["Reptile", "Reptile"],["Bird", "Bird"],["Barnyard", "Barnyard"]])) %>
+  <%= label_tag('pets[breed]', "Breed") %>
+  <%= text_field_tag('pets[breed]') %>
+  <%= label_tag('pets[age]', "Age") %>
+  <%= select_tag('pets[age]', options_for_select([["None",""],["Baby","Baby"],["Young","Young"],["Adult", "Adult"], ["Senior","Senior"]])) %>
+  <%= label_tag('pets[sex]', "Gender") %>
+  <%= select_tag('pets[sex]', options_for_select([["None",""],["Male","M"],["Female","F"]])) %>
+    <%= label_tag('pets[size]', "Size") %>
+  <%= select_tag('pets[size]', options_for_select([["None",""],["Small","S"],["Medium","M"], ["Large", "L"], ["Xtra Large", "XL"]])) %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+ <%= submit_tag "Search" %>
+ <%end%>
 
-  <tbody>
-    <% @pets.each do |pet| %>
-      <tr>
-        <td><%= link_to 'Show', pet %></td>
-        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-  <% @animals.collect do |animal| %>
-<table>
-    <tr>
-      <td>name:<%= animal.name %></td>
-      <td>size:<%= animal.size %></td>
-      <td>breed: <%= animal.breeds.join %></td>
-      <td>age: <%= animal.age %></td>
-      <td>sex: <%= animal.sex %></td>
-      <td>city: <%= animal.city.join %> </td>
-      <td><%= animal.contact %></td>
-      <td><%= animal.description %></td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td>
-      <td>94</td>
-    </tr>
-  </table>
-  <%end%>
-
-
-
-<%= link_to 'New Pet', new_pet_path %>

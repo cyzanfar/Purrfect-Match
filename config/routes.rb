@@ -4,11 +4,13 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get '/pets' => 'pets#search'
+  get '/pets' => 'pets#index'
 
-  post '/pets' => 'pets#create'
+  post '/pets/search' => 'pets#search'
 
-  get '/results' => 'pets#results'
+  # post '/pets' => 'pets#create'
+
+  # get '/results' => 'pets#results'
 
 
 

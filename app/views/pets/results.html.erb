@@ -1,4 +1,4 @@
-<% @animals.each do |pet| %>
+<% @pets.each do |pet| %>
 <table class="table">
     <thead>
         <tr>
@@ -11,7 +11,7 @@
             <th>Picture</th>
             <th>Description</th>
             <th>Shelter_id</th>
-            <th>Last Update</th>
+            
             <th>Shelter</th>
             <th>Phone</th>
             <th>Email</th>
@@ -22,16 +22,20 @@
     <tbody>
         <tr>
             <td><%= pet.name %></td>
-            <td><%= pet.type_name %></td>
+            <td><%= pet.species %></td>
             <td><%= pet.sex %></td>
             <td><%= pet.age %></td>
-            <td><%= pet.breed%></td>
+            
+            <td><% pet.breeds.each do |breed| %>
+                <li><%= breed.name %></li>
+                <%end%>
+            </td>
             <td><%= pet.size %></td>
             <td><%= image_tag pet.picture %></td>
             <td><%= pet.description %></td>
             <td><%= pet.shelter_id %></td>
-            <td><%= pet.last_update %></td>
-            <% shelter = Shelter.find_by(name: pet.shelter_name)%>
+           
+            <% shelter = Shelter.find(pet.shelter_id)%>
             <td><%= shelter.name %></td>
             <td><%= shelter.phone %></td>
             <td><%= shelter.email %></td>
