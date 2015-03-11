@@ -2,6 +2,9 @@ class Pet < ActiveRecord::Base
   belongs_to :shelter
   has_many :pet_breeds
   has_many :breeds, through: :pet_breeds
+  has_many :favorite_pets
+  has_many :users, through: :favorite_pets
+
 
   # def self.species
   #   @species = ["barnyard", "bird", "cat", "dog", "horse", "pig", "reptile", "smallfurry"]
@@ -21,7 +24,7 @@ end
     ["pets.species == params['pets']['species']"]
   end
 
- 
+
 # def keyword_conditions
 #   ["pets.species = params['pets']['species']"] unless keywords.blank?
 # end

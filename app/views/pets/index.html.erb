@@ -5,7 +5,7 @@
  <%= label_tag('pets[species]', "Type") %>
  <%= select_tag('pets[species]', options_for_select([["Dog","Dog"],["Cat","Cat"],["Rabbit", "Rabbit"], ["Small & Furry","Smallfurry"],["Horse", "Horse"],["Pig", "Pig"],["Reptile", "Reptile"],["Bird", "Bird"],["Barnyard", "Barnyard"]])) %>
   <%= label_tag('pets[breed]', "Breed") %>
-  <%= text_field_tag('pets[breed]') %>
+  <%= text_field_tag('pets[breed]', nil, class: 'typeahead') %>
   <%= label_tag('pets[age]', "Age") %>
   <%= select_tag('pets[age]', options_for_select([["None",""],["Baby","Baby"],["Young","Young"],["Adult", "Adult"], ["Senior","Senior"]])) %>
   <%= label_tag('pets[sex]', "Gender") %>

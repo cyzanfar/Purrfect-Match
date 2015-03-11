@@ -20,7 +20,6 @@ class PetsController < ApplicationController
   end
 
   def clean_params
-    # binding.pry
     thinned_params.permit(:species, :zip_code, :sex, :size, :breed, :age)
   end
 
