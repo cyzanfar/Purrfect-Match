@@ -15,7 +15,7 @@ ZIPCODES = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10009, 10010, 10011
 
 PETFINDER = Petfinder::Client.new('bf43919be64d0ffed94aa9fa2acfd9d0', '11f2621e8fac20123e25a1807f0e61fe')
 
-PETFINDER.find_pets(SPECIES.sample, ZIPCODES.sample, count: 900).each do |pf|
+PETFINDER.find_pets(SPECIES.sample, ZIPCODES.sample, count: 50).each do |pf|
   # binding.pry
   pet = Pet.find_or_create_by(species: pf.animal, name: pf.name, size: pf.size, sex: pf.sex, age: pf.age, description: pf.description)
   pf.breeds.each do |breed|
@@ -30,7 +30,7 @@ PETFINDER.find_pets(SPECIES.sample, ZIPCODES.sample, count: 900).each do |pf|
   end
   pf_shelter = PETFINDER.shelter(pf.shelter_id)
   shelter = Shelter.find_or_create_by(name:pf_shelter.name, email: pf_shelter.email, phone: pf_shelter.phone, state: pf_shelter.state, city: pf_shelter.city, zip: pf_shelter.zip)
-
+  pet.zip_code = shelter.zip
   shelter.save
   pet.shelter_id = shelter.id
   pet.save
