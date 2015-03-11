@@ -27,7 +27,7 @@ class PetsController < ApplicationController
   # def create
 
   def create
-    binding.pry
+    # binding.pry
     #redirect to results
   end
 
