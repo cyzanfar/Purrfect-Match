@@ -30,6 +30,7 @@ class PetsController < ApplicationController
     binding.pry
     #redirect to results
   end
+
   #   Pet.destroy_all
   #    @pets = PETFINDER.find_pets(pet_finder_type, pet_finder_zip, count: 500)
   #    if params['pets']['breed'].empty?
