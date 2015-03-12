@@ -8,9 +8,7 @@ Rails.application.routes.draw do
 
   post '/pets/search' => 'pets#search'
 
-  # post '/pets' => 'pets#create'
-
-  # get '/results' => 'pets#results'
+  resources :favorite_pets
 
 
 

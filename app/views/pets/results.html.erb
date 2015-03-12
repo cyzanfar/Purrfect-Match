@@ -11,12 +11,13 @@
             <th>Picture</th>
             <th>Description</th>
             <th>Shelter_id</th>
-            
+
             <th>Shelter</th>
             <th>Phone</th>
             <th>Email</th>
             <th>City</th>
             <th>Zip</th>
+            <th>Like</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +26,7 @@
             <td><%= pet.species %></td>
             <td><%= pet.sex %></td>
             <td><%= pet.age %></td>
-            
+
             <td><% pet.breeds.each do |breed| %>
                 <li><%= breed.name %></li>
                 <%end%>
@@ -34,14 +35,20 @@
             <td><%= image_tag pet.picture %></td>
             <td><%= pet.description %></td>
             <td><%= pet.shelter_id %></td>
-           
+
             <% shelter = Shelter.find(pet.shelter_id)%>
             <td><%= shelter.name %></td>
             <td><%= shelter.phone %></td>
             <td><%= shelter.email %></td>
             <td><%= shelter.city %></td>
             <td><%= shelter.zip %></td>
+            <td><%= form_for pet, :url => { :controller => "favorite_pets", :action => "create" }, :html => {:method => :post} do |f| %>
+            <%= f.text_field :id %>
+            <%= f.submit %>
+            <% end %>
+</td>
         </tr>
+
 
     </tbody>
 </table>

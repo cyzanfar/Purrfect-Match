@@ -1,0 +1,50 @@
+<% @favorite_pets.each do |favorite_pet| %>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>breed</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Description</th>
+            <th>Shelter_id</th>
+
+            <th>Shelter</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>Like</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= favorite_pet.pet.name %></td>
+            <td><%= favorite_pet.pet.species %></td>
+            <td><%= favorite_pet.pet.sex %></td>
+            <td><%= favorite_pet.pet.age %></td>
+
+            <td><% favorite_pet.pet.breeds.each do |breed| %>
+                <li><%= breed.name %></li>
+                <%end%>
+            </td>
+            <td><%= favorite_pet.pet.size %></td>
+            <td><%= image_tag favorite_pet.pet.picture %></td>
+            <td><%= favorite_pet.pet.description %></td>
+            <td><%= favorite_pet.pet.shelter_id %></td>
+
+
+            <td><%= favorite_pet.pet.shelter.name %></td>
+            <td><%= favorite_pet.pet.shelter.phone unless favorite_pet.pet.shelter.phone == "" %></td>
+            <td><%= favorite_pet.pet.shelter.email %></td>
+            <td><%= favorite_pet.pet.shelter.city %></td>
+            <td><%= favorite_pet.pet.shelter.zip %></td>
+        </tr>
+
+
+    </tbody>
+</table>
+<%end%>
