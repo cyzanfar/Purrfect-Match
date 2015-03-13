@@ -1,10 +1,26 @@
-<div class="container">
+ <div class="container">
   <div class="page-header" id="banner">
     <div class="row">
       <div class="col-lg-8 col-md-7 col-sm-6">
-<h1> Welcome</h1>
 
-<%= link_to 'search', pets_path %>
+<%= form_tag :controller => 'pets', :action => 'search', :method => 'get' do %>
+ <%= label_tag('pets[zip_code]', "Zipcode") %>
+ <%= text_field_tag('pets[zip_code]') %>
+ <%= label_tag('pets[species]', "Type") %>
+ <%= select_tag('pets[species]', options_for_select([["Dog","Dog"],["Cat","Cat"],["Rabbit", "Rabbit"], ["Small & Furry","Smallfurry"],["Horse", "Horse"],["Pig", "Pig"],["Reptile", "Reptile"],["Bird", "Bird"],["Barnyard", "Barnyard"]])) %>
+  <%= label_tag('pets[breed]', "Breed") %>
+  <%= text_field_tag('pets[breed]', nil, class: 'typeahead') %>
+  <%= label_tag('pets[age]', "Age") %>
+  <%= select_tag('pets[age]', options_for_select([["None",""],["Baby","Baby"],["Young","Young"],["Adult", "Adult"], ["Senior","Senior"]])) %>
+  <%= label_tag('pets[sex]', "Gender") %>
+  <%= select_tag('pets[sex]', options_for_select([["None",""],["Male","M"],["Female","F"]])) %>
+    <%= label_tag('pets[size]', "Size") %>
+  <%= select_tag('pets[size]', options_for_select([["None",""],["Small","S"],["Medium","M"], ["Large", "L"], ["Xtra Large", "XL"]])) %>
+
+ <%= submit_tag "Search" %>
+ <%end%>
+
+
 </div>
 </div>
 </div>
