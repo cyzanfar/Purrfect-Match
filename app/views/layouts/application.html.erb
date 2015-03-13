@@ -9,14 +9,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar navbar-default navbar-fixed-top"
+  <div class="container">
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+  <div class="navbar-header">
+    <a href="../" class="navbar-brand">Purrfect Match</a>
+  </div>
+  <div class="navbar-collapse collapse" id="navbar-main">
+  <ul class="nav navbar-nav">
 <% if user_signed_in? %>
   <li><%= link_to "My Pets", "/users/my_pets", :method => :get %></li>
 	<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 <% else %>
 <li><%= link_to('Login', new_user_session_path)%></li>
+<li><%= link_to('Sign Up', new_user_registration_path)%></li>
 <%end%>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
 <%= yield %>
 
 </body>

@@ -1,3 +1,84 @@
-<h1> Welcome</h1>
+ <div class="container">
+  <div class="page-header" id="banner">
+    <div class="row">
+      <div class="col-lg-8">
+<form class="form-horizontal">
+<%= form_tag :controller => 'pets', :action => 'search', :method => 'get' do %>
+ <%= label_tag('pets[zip_code]', "Zipcode") %>
+ <%= text_field_tag('pets[zip_code]') %>
+ <%= label_tag('pets[species]', "Type") %>
+ <%= select_tag('pets[species]', options_for_select([["Dog","Dog"],["Cat","Cat"],["Rabbit", "Rabbit"], ["Small & Furry","Smallfurry"],["Horse", "Horse"],["Pig", "Pig"],["Reptile", "Reptile"],["Bird", "Bird"],["Barnyard", "Barnyard"]])) %>
+  <%= label_tag('pets[breed]', "Breed") %>
+  <%= text_field_tag('pets[breed]', nil, class: 'typeahead') %>
+  <%= label_tag('pets[age]', "Age") %>
+  <%= select_tag('pets[age]', options_for_select([["None",""],["Baby","Baby"],["Young","Young"],["Adult", "Adult"], ["Senior","Senior"]])) %>
+  <%= label_tag('pets[sex]', "Gender") %>
+  <%= select_tag('pets[sex]', options_for_select([["None",""],["Male","M"],["Female","F"]])) %>
+    <%= label_tag('pets[size]', "Size") %>
+  <%= select_tag('pets[size]', options_for_select([["None",""],["Small","S"],["Medium","M"], ["Large", "L"], ["Xtra Large", "XL"]])) %>
 
-<%= link_to 'search', pets_path %>
+ <%= submit_tag "Find Pets!" %>
+ <%end%>
+</form>
+
+
+</div>
+</div>
+</div>
+<%@pets = Pet.all[0..10]%>
+<% @pets.each do |pet| %>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>breed</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Description</th>
+            <th>Shelter_id</th>
+
+            <th>Shelter</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>Like</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= pet.name %></td>
+            <td><%= pet.species %></td>
+            <td><%= pet.sex %></td>
+            <td><%= pet.age %></td>
+
+            <td><% pet.breeds.each do |breed| %>
+                <li><%= breed.name %></li>
+                <%end%>
+            </td>
+            <td><%= pet.size %></td>
+            <td><%= image_tag pet.picture %></td>
+            <td><%= pet.description %></td>
+            <td><%= pet.shelter_id %></td>
+
+            <% shelter = Shelter.find(pet.shelter_id)%>
+            <td><%= shelter.name %></td>
+            <td><%= shelter.phone %></td>
+            <td><%= shelter.email %></td>
+            <td><%= shelter.city %></td>
+            <td><%= shelter.zip %></td>
+            <td><%= form_for pet, :url => { :controller => "favorite_pets", :action => "create" }, :html => {:method => :post}, :remote => true do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.submit %>
+            <% end %>
+</td>
+        </tr>
+
+
+    </tbody>
+</table>
+<%end%>
+</div>
