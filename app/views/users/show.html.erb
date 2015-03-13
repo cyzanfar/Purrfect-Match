@@ -1,0 +1,53 @@
+<%= @user.email%>
+<%@pets.each do |pet|%>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>breed</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Description</th>
+            <th>Shelter_id</th>
+
+            <th>Shelter</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>Like</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= pet.name %></td>
+            <td><%= pet.species %></td>
+            <td><%= pet.sex %></td>
+            <td><%= pet.age %></td>
+
+            <td><% pet.breeds.each do |breed| %>
+                <li><%= breed.name %></li>
+                <%end%>
+            </td>
+            <td><%= pet.size %></td>
+            <td><%= pet.picture %></td>
+            <td><%= pet.description %></td>
+            <td><%= pet.shelter_id %></td>
+
+
+            <td><%= pet.shelter.name %></td>
+            <td><%= pet.shelter.phone unless pet.shelter.phone == "" %></td>
+            <td><%= pet.shelter.email %></td>
+            <td><%= pet.shelter.city %></td>
+            <td><%= pet.shelter.zip %></td>
+        </tr>
+
+
+    </tbody>
+</table>
+<br></br>
+<%= @user.email %>
+<%end%>
