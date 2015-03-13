@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   end
 
   def my_pets
-    @user = User.find_by(current_user.id)
+    # binding.pry
+    @user = User.find(current_user.id)
     @pets = @user.pets
 
     render :my_pets
