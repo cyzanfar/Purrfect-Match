@@ -1,8 +1,8 @@
  <div class="container">
   <div class="page-header" id="banner">
     <div class="row">
-      <div class="col-lg-8 col-md-7 col-sm-6">
-
+      <div class="col-lg-8">
+<form class="form-horizontal">
 <%= form_tag :controller => 'pets', :action => 'search', :method => 'get' do %>
  <%= label_tag('pets[zip_code]', "Zipcode") %>
  <%= text_field_tag('pets[zip_code]') %>
@@ -17,8 +17,9 @@
     <%= label_tag('pets[size]', "Size") %>
   <%= select_tag('pets[size]', options_for_select([["None",""],["Small","S"],["Medium","M"], ["Large", "L"], ["Xtra Large", "XL"]])) %>
 
- <%= submit_tag "Search" %>
+ <%= submit_tag "Find Pets!" %>
  <%end%>
+</form>
 
 
 </div>
