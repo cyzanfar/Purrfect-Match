@@ -25,7 +25,11 @@
 </div>
 </div>
 </div>
-<%@pets = Pet.all[0..10]%>
+<%@pets = []%>
+<% @pets << Pet.all[rand(0..100)]%>
+<%@pets << Pet.all[rand(0..100)]%>
+<%@pets << Pet.all[rand(0..100)]%> 
+<%@pets << Pet.all[rand(0..100)]%>
 <% @pets.each do |pet| %>
 <table class="table">
     <thead>
